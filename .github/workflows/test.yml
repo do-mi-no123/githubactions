@@ -1,8 +1,24 @@
-from unittest import TestCase
+name: Run Tests
 
-from src.main import add
+on:
+  push:
 
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Python Setup
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
 
-class MainTestCase(TestCase):
-    def test_add(self):
-        self.assertEqual(5, add(2, 3))
+      - name: Setup Poetry
+        uses: Gr1N/setup-poetry@v7
+
+      - name: Run poetry install
+        run: poetry install
+
+      - name: Run tests
+        run: poetry run python -m pytest
