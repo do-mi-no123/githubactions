@@ -44,4 +44,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test Step
-        run:  echo Test World:
+        run:  echo Test World
